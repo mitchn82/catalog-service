@@ -7,16 +7,20 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Version } from './version.entity';
+import { Sortable } from 'src/pagination/decorators/sortable.decorator';
 
 @Entity()
 export class Service {
   @PrimaryGeneratedColumn()
+  @Sortable()
   id: number;
 
   @Column({ length: 255 })
+  @Sortable()
   name: string;
 
   @Column('text')
+  @Sortable()
   description: string;
 
   /**
@@ -45,6 +49,7 @@ export class Service {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
+  @Sortable()
   public createdAt: Date;
 
   /**
@@ -55,5 +60,6 @@ export class Service {
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
+  @Sortable()
   public updatedAt: Date;
 }

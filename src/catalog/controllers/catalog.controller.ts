@@ -21,14 +21,16 @@ import { CatalogService } from '../services/catalog.service';
 import { CreateServiceDto } from '../dto/create-service.dto';
 import { ServiceMapper } from '../dto/mappers';
 import { ServiceDto } from '../dto/service.dto';
+import { SearchQueryDto } from '../dto/search-query.dto';
 import { UpdateServiceDto } from '../dto/update-service.dto';
-import { ServicePageRequestPipe } from '../pipes/service-page-request.pipe';
+import { PageRequestPipe } from '../../pagination/pipes/page-request.pipe';
+import { Service } from '../entities/service.entity';
 
 @ApiBearerAuth()
 @ApiTags('Services')
 @Controller('/v1/services')
 export class CatalogController {
-  constructor(private readonly catalogService: CatalogService) {}
+  constructor(private readonly catalogService: CatalogService) { }
 
   @Get('search')
   @ApiOperation({
@@ -37,10 +39,10 @@ export class CatalogController {
   @ApiResponse({ status: 200, description: 'OK', type: Page<ServiceDto> })
   async search(
     @Request() request,
-    @Query('q') query: string,
-    @Query(ServicePageRequestPipe) pageRequest: PageRequest,
+    @Query() query: SearchQueryDto,
+    @Query(new PageRequestPipe(new Service())) pageRequest: PageRequest,
   ): Promise<Page<ServiceDto>> {
-    return this.catalogService.search(request.principal, query, pageRequest);
+    return this.catalogService.search(request.principal, query.q, pageRequest);
   }
 
   @Get()
@@ -48,7 +50,7 @@ export class CatalogController {
   @ApiResponse({ status: 200, description: 'OK', type: Page<ServiceDto> })
   async find(
     @Request() request,
-    @Query(ServicePageRequestPipe) pageRequest: PageRequest,
+    @Query(new PageRequestPipe(new Service())) pageRequest: PageRequest,
   ): Promise<Page<ServiceDto>> {
     return this.catalogService.find(request.principal, pageRequest);
   }

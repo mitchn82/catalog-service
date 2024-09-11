@@ -93,7 +93,23 @@ This is a generic implementation and can be reused where needed.
 ### Validations
 
 All validations are performed by the `ValidationPipe` by Nest.js.
-For service endpoints that provide paginations, there is a specific pipe in `src/catalog/pipes/service-page-request.pipe.ts` that validates the fields that can be sortable for the Service model. This prevents any SQL injection attempts on `sort` query parameter
+For endpoints that provide paginations, there is a specific pipe in `src/pagination/pipes/page-request.pipe.ts` that validates the fields that can be sortable.
+Entities fields can be annotated with `@Sortable` decorator, that refers to fields can be used in the `sort` query parameter.
+This prevents any SQL injection attempts on `sort` query parameter.
+
+### Search
+
+The application can perform full text searches for services. The endpoint is `http://localhost:3000/v1/services/search` and it accepts a `PageRequest` and a `q` string with minimum lenght of 3 chars, for preventing searches that can lead to performance issues.
+
+```typescript
+  async search(
+    @Request() request,
+    @Query() query: SearchQueryDto,
+    @Query(ServicePageRequestPipe) pageRequest: PageRequest,
+  ): Promise<Page<ServiceDto>> {
+    return this.catalogService.search(request.principal, query.q, pageRequest);
+  }
+```
 
 ## Tech stack
 
