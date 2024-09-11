@@ -30,7 +30,7 @@ erDiagram
     int id 
     string name 
     string description 
-    string serviceId 
+    int serviceId 
     timestamp createdAt 
     timestamp updatedAt 
   }
