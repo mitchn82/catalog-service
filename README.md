@@ -67,8 +67,10 @@ async find(
 There is also a utility endpoint at `http://localhost:3000/auth/login`  that can be used to retrieve a valid JWT token and perform API calls from Swagger UI or any HTTP client. There are two users that can be used for testing:
 
 - username: **bob**
+
   password: **changeme**
 - username: **alice**
+  
   password: **guess**
 
 Valid users are hardcoded in `src/auth/auth.repository.ts`. Of course, this endpoint is not intended to be delivered in production.
@@ -104,12 +106,17 @@ For service endpoints that provide paginations, there is a specific pipe in `src
 ## Installation
 
 - Install dependencies:
-  `npm install`
+  
+  `> npm install`
 - Run migrations:
-  `npm run migration:up`
+
+  `> npm run migration:up`
+  
   The database configuration for migrations can be located at `src/database/migration.config.ts`
 - Run the application:
-  `npm run start`
+
+  `> npm run start`
+  
   The configuration of the application is located at `config/configuration.yaml`
 
 ## Swagger UI
