@@ -1,0 +1,12 @@
+db:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  username: "root"
+  password: "root"
+  database: "catalog"
+  autoLoadEntities: true
+  logging: true
+jwt:
+  secret: "KongIsTheWorldsMostAdoptedOpenSourceAPIGateway"
+  expires: "1h"
