@@ -99,7 +99,7 @@ This prevents any SQL injection attempts on `sort` query parameter.
 
 ### Search
 
-The application can perform full text searches for services. The endpoint is `http://localhost:3000/v1/services/search` and it accepts a `PageRequest` and a `q` string with minimum lenght of 3 chars, for preventing searches that can lead to performance issues.
+The application can perform full text searches for services. The endpoint is `http://localhost:3000/v1/services/search` and it accepts a `PageRequest` and a `q` string with minimum lenght of 3 chars, for preventing searches that can lead to performance issues. The full text search can works only on Postgres database.
 
 ```typescript
   async search(

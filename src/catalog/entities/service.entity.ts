@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  Index,
 } from 'typeorm';
 import { Version } from './version.entity';
 import { Sortable } from 'src/pagination/decorators/sortable.decorator';
@@ -27,6 +28,7 @@ export class Service {
    * ID of the owner
    */
   @Column()
+  @Index()
   userId: string;
 
   /**

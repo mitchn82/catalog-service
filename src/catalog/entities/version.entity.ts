@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  Index,
 } from 'typeorm';
 import { Service } from './service.entity';
 
@@ -20,6 +21,7 @@ export class Version {
   description: string;
 
   @ManyToOne(() => Service, (service) => service.versions)
+  @Index()
   service: Service;
 
   /**
