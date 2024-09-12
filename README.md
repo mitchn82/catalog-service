@@ -17,7 +17,7 @@ The Catalog service is responsible for managing Services and Versions. It provid
 
 ```mermaid
 erDiagram
-  SERVICE ||--|{ VERSION : has
+  SERVICE |--||{ VERSION : has
   SERVICE { 
    int id 
    string name 
