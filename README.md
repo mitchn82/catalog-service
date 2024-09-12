@@ -119,6 +119,36 @@ The application can perform full text searches for services. The endpoint is `ht
 - Postgres
 - Jest
 
+## Endpoints
+
+### Services
+
+- `GET /v1/services`
+  Returns a paginated list of services
+- `GET /v1/services/{id}`
+  Returns a service by id
+- `POST /v1/services`
+  Create a new service
+- `PATCH /v1/services/{id}`
+  Update an existing service given id
+- `DELETE /v1/services/{id}`
+  Delete a service by id
+- `GET /v1/services/search`
+  Perform a full text search for services, returns a paginated list
+
+### Versions
+
+- `GET /v1/versions`
+  Returns all versions given service id
+- `GET /v1/versions/{id}`
+  Returns a version by id
+- `POST /v1/versions`
+  Create a new version for given service
+- `PATCH /v1/versions/{id}`
+  Update an existing version given id
+- `DELETE /v1/versions/{id}`
+  Delete a version by id
+  
 ## Installation
 
 - Install dependencies:
